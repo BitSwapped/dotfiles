@@ -297,16 +297,16 @@ typeset -g _CMD_START_TIME
 
   local str icon color
   if (( dt >= 3600 )); then
-    echof -v str '%.0fh %.0fm %.1fs' $((dt/3600)) $((dt%3600/60)) $((dt%60))
+    printf -v str '%.0fh %.0fm %.1fs' $((dt/3600)) $((dt%3600/60)) $((dt%60))
     icon="󰥔" color="%F{red}"
   elif (( dt >= 60 )); then
-    echof -v str '%.0fm %.1fs' $((dt/60)) $((dt%60))
+    printf -v str '%.0fm %.1fs' $((dt/60)) $((dt%60))
     icon="󰥐" color="%F{magenta}"
   elif (( dt >= 10 )); then
-    echof -v str '%.1fs' $dt
+    printf -v str '%.1fs' $dt
     icon="󰔟" color="%F{yellow}"
   else
-    echof -v str '%.2fs' $dt
+    printf -v str '%.2fs' $dt
     icon="⚡" color="%F{cyan}"
   fi
   print -P "${color}${icon} Command completed in ${str}%f"
