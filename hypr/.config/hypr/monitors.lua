@@ -3,11 +3,11 @@
 -----------------------
 
 hl.monitor({
-	output = "HDMI-A-1",
+  output = "HDMI-A-1",
 
-	mode = "1920x1080@60Hz",
+  mode = "1920x1080@60Hz",
 
-	position = "0x0",
+  position = "0x0",
 
-	scale = 1.0,
+  scale = 1.0,
 })

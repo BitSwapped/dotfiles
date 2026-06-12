@@ -16,57 +16,57 @@ hl.window_rule({ name = "ghostty-blur", match = { class = "com.mitchellh.ghostty
 
 -- Browsers
 hl.window_rule({
-	name = "zen-browser-ws2",
-	match = { class = "zen" },
-	workspace = "2 silent",
+  name = "zen-browser-ws2",
+  match = { class = "zen" },
+  workspace = "2 silent",
 })
 hl.window_rule({
-	name = "firefox-ws3",
-	match = { class = "Firefox" },
-	workspace = "3 silent",
+  name = "firefox-ws3",
+  match = { class = "Firefox" },
+  workspace = "3 silent",
 })
 
 -- File Managers
 hl.window_rule({
-	match = { class = "org.kde.dolphin" },
-	float = true,
-	size = { "(monitor_w*0.7)", "(monitor_h*0.75)" },
-	center = true,
+  match = { class = "org.kde.dolphin" },
+  float = true,
+  size = { "(monitor_w*0.7)", "(monitor_h*0.75)" },
+  center = true,
 })
 hl.window_rule({
-	match = { class = "nemo" },
-	float = true,
-	size = { "(monitor_w*0.7)", "(monitor_h*0.75)" },
-	center = true,
+  match = { class = "nemo" },
+  float = true,
+  size = { "(monitor_w*0.7)", "(monitor_h*0.75)" },
+  center = true,
 })
 
 -- System / Settings Utilities
 hl.window_rule({
-	match = { class = "org.kde.easyeffects" },
-	float = true,
-	size = { "(monitor_w*0.6)", "(monitor_h*0.7)" },
-	center = true,
+  match = { class = "org.kde.easyeffects" },
+  float = true,
+  size = { "(monitor_w*0.6)", "(monitor_h*0.7)" },
+  center = true,
 })
 hl.window_rule({
-	match = { class = "lxappearance" },
-	float = true,
-	size = { "(monitor_w*0.5)", "(monitor_h*0.6)" },
-	center = true,
+  match = { class = "lxappearance" },
+  float = true,
+  size = { "(monitor_w*0.5)", "(monitor_h*0.6)" },
+  center = true,
 })
 
 hl.window_rule({
-	match = { class = "nwg-look" },
-	float = true,
-	size = { "(monitor_w*0.5)", "(monitor_h*0.6)" },
-	center = true,
+  match = { class = "nwg-look" },
+  float = true,
+  size = { "(monitor_w*0.5)", "(monitor_h*0.6)" },
+  center = true,
 })
 
 -- LibreOffice
 hl.window_rule({
-	match = { class = "libreoffice-draw" },
-	float = true,
-	size = { "(monitor_w*0.8)", "(monitor_h*0.85)" },
-	center = true,
+  match = { class = "libreoffice-draw" },
+  float = true,
+  size = { "(monitor_w*0.8)", "(monitor_h*0.85)" },
+  center = true,
 })
 -- Force LibreOffice floating dialogs to center properly
 hl.window_rule({ match = { class = "soffice", title = "^(Tip of the Day)" }, float = true, center = true })
@@ -79,8 +79,8 @@ hl.window_rule({ match = { title = "^(Select a File)(.*)$" }, float = true })
 hl.window_rule({ match = { title = "^(Choose wallpaper)(.*)$" }, center = true })
 hl.window_rule({ match = { title = "^(Choose wallpaper)(.*)$" }, float = true })
 hl.window_rule({
-	match = { title = "^(Choose wallpaper)(.*)$" },
-	size = { "(monitor_w*0.60)", "(monitor_h*0.65)" },
+  match = { title = "^(Choose wallpaper)(.*)$" },
+  size = { "(monitor_w*0.60)", "(monitor_h*0.65)" },
 })
 hl.window_rule({ match = { title = "^(Open Folder)(.*)$" }, center = true })
 hl.window_rule({ match = { title = "^(Open Folder)(.*)$" }, float = true })
@@ -96,14 +96,14 @@ hl.window_rule({ match = { title = "^(.*)(wants to open)$" }, center = true })
 hl.window_rule({ match = { title = "^(.*)(wants to open)$" }, float = true })
 hl.window_rule({ match = { class = "^(pavucontrol)$" }, float = true })
 hl.window_rule({
-	match = { class = "^(pavucontrol)$" },
-	size = { "(monitor_w*0.45)", "(monitor_h*0.45)" },
+  match = { class = "^(pavucontrol)$" },
+  size = { "(monitor_w*0.45)", "(monitor_h*0.45)" },
 })
 hl.window_rule({ match = { class = "^(pavucontrol)$" }, center = true })
 hl.window_rule({ match = { class = "^(org.pulseaudio.pavucontrol)$" }, float = true })
 hl.window_rule({
-	match = { class = "^(org.pulseaudio.pavucontrol)$" },
-	size = { "(monitor_w*0.45)", "(monitor_h*0.45)" },
+  match = { class = "^(org.pulseaudio.pavucontrol)$" },
+  size = { "(monitor_w*0.45)", "(monitor_h*0.45)" },
 })
 hl.window_rule({ match = { class = "^(org.pulseaudio.pavucontrol)$" }, center = true })
 hl.window_rule({ match = { class = ".*plasmawindowed.*" }, float = true })
@@ -114,8 +114,8 @@ hl.window_rule({ match = { title = "^(illogical-impulse Settings)$" }, float = t
 hl.window_rule({ match = { title = ".*Shell conflicts.*" }, float = true })
 hl.window_rule({ match = { class = "org.freedesktop.impl.portal.desktop.kde" }, float = true })
 hl.window_rule({
-	match = { class = "org.freedesktop.impl.portal.desktop.kde" },
-	size = { "(monitor_w*0.60)", "(monitor_h*0.65)" },
+  match = { class = "org.freedesktop.impl.portal.desktop.kde" },
+  size = { "(monitor_w*0.60)", "(monitor_h*0.65)" },
 })
 
 -- Move
@@ -133,12 +133,12 @@ hl.window_rule({ match = { class = "^dev\\.warp\\.Warp$" }, tile = true })
 hl.window_rule({ match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" }, float = true })
 hl.window_rule({ match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" }, keep_aspect_ratio = true })
 hl.window_rule({
-	match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" },
-	move = { "(monitor_w*0.73)", "(monitor_h*0.72)" },
+  match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" },
+  move = { "(monitor_w*0.73)", "(monitor_h*0.72)" },
 })
 hl.window_rule({
-	match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" },
-	size = { "(monitor_w*0.25)", "(monitor_h*0.25)" },
+  match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" },
+  size = { "(monitor_w*0.25)", "(monitor_h*0.25)" },
 })
 hl.window_rule({ match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" }, float = true })
 hl.window_rule({ match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" }, pin = true })
@@ -147,8 +147,8 @@ hl.window_rule({ match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.
 hl.window_rule({ match = { title = ".*is sharing (a window|your screen).*" }, float = true })
 hl.window_rule({ match = { title = ".*is sharing (a window|your screen).*" }, pin = true })
 hl.window_rule({
-	match = { title = ".*is sharing (a window|your screen).*" },
-	move = { "(monitor_w*.5-window_w*.5)", "(monitor_h-window_h-12)" },
+  match = { title = ".*is sharing (a window|your screen).*" },
+  move = { "(monitor_w*.5-window_w*.5)", "(monitor_h-window_h-12)" },
 })
 
 -- Tearing

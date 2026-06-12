@@ -85,6 +85,11 @@ bind({ mainMod, shiftMod, "L" }, hl.dsp.window.swap({ direction = "right" }), { 
 bind({ mainMod, shiftMod, "K" }, hl.dsp.window.swap({ direction = "up" }), { description = "Swap window up" })
 bind({ mainMod, shiftMod, "J" }, hl.dsp.window.swap({ direction = "down" }), { description = "Swap window down" })
 
+bind({ mainMod, "Tab" }, function()
+  hl.dispatch(hl.dsp.window.cycle_next())  -- Change focus to another window
+  hl.dispatch(hl.dsp.window.bring_to_top()) -- Bring it to the top
+end)
+
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
