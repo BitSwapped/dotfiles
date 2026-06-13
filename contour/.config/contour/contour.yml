@@ -1,0 +1,184 @@
+platform_plugin: auto
+
+renderer:
+    backend: default
+
+    tile_direct_mapping: false
+
+    tile_hashtable_slots: 4096
+
+    tile_cache_count: 4000
+
+word_delimiters: " /\\()\"'-.,:;<>~!@#$%^&*+=[]{{}}~?|│"
+
+extended_word_delimiters: " /\\()\"'-.,:;<>~!@#$%^&*+=[]{{}}~?|│"
+
+read_buffer_size: 16384
+
+pty_buffer_size: 1048576
+
+default_profile: main
+
+# Terminal Profiles
+# -----------------
+profiles:
+
+    main:
+        shell: /bin/zsh
+
+        show_title_bar: false
+
+        size_indicator_on_resize: false
+
+        history:
+            limit: 2500
+            auto_scroll_on_update: true
+            scroll_multiplier: 4
+
+        permissions:
+            capture_buffer: ask
+            change_font: ask
+            display_host_writable_statusline: deny
+
+        font:
+            size: 11.4
+
+            locator: native
+
+            text_shaping:
+                engine: harfbuzz
+
+            builtin_box_drawing: true
+
+            max_fallback_count: 16
+
+            render_mode: gray
+
+            regular:
+                family: "Maple Mono NF"
+
+                weight: semibold
+
+                slant: italic
+
+                fallback: ["RecMonoSmCasual Nerd Font Mono", "PitagonSansM Nerd Font Mono"]
+
+        draw_bold_text_with_bright_colors: true
+
+        blink_style: smooth
+
+        screen_transition: fade
+
+        screen_transition_duration: 250
+
+        cursor_motion_animation_duration: 70
+
+        cursor:
+            shape: block
+            blinking: true
+            blinking_interval: 500
+
+        status_line:
+            display: none
+
+        colors: kage
+
+# Color Profiles
+# --------------
+color_schemes:
+    kage:
+        default:
+            background:        '#080d18'   # void
+            foreground:        '#dce8f4'   # echo
+            bright_foreground: '#b8cce8'   # voice
+            dimmed_foreground: '#5870a8'   # smoke
+
+        hyperlink_decoration:
+            normal: '#5098f0'   # sky
+            hover:  '#f05888'   # bloom
+
+        vi_mode_highlight:
+            foreground:       '#dce8f4'   # echo
+            foreground_alpha: 1
+            background:       '#8060e8'   # violet
+            background_alpha: 0.45
+
+        vi_mode_cursorline:
+            foreground:       '#b8cce8'   # voice
+            foreground_alpha: 0.2
+            background:       '#141c34'   # shadow
+            background_alpha: 0.5
+
+        selection:
+            foreground:       '#dce8f4'   # echo
+            foreground_alpha: 1
+            background:       '#405890'   # mist
+            background_alpha: 0.45
+
+        search_highlight:
+            foreground:       '#080d18'   # void (background)
+            foreground_alpha: 1
+            background:       '#dce8f4'   # echo (foreground)
+            background_alpha: 1
+
+        search_highlight_focused:
+            foreground:       '#080d18'   # void
+            foreground_alpha: 1
+            background:       '#f0a038'   # amber
+            background_alpha: 1
+
+        word_highlight_current:
+            foreground:       '#dce8f4'   # echo
+            foreground_alpha: 1
+            background:       '#2d4470'   # fog
+            background_alpha: 0.7
+
+        word_highlight_other:
+            foreground:       '#98b0d8'   # murmur
+            foreground_alpha: 1
+            background:       '#202d54'   # twilight
+            background_alpha: 0.6
+
+        hint_label:
+            foreground:       '#080d18'   # void
+            foreground_alpha: 1
+            background:       '#f0a038'   # amber
+            background_alpha: 1
+
+        hint_match:
+            foreground:       '#dce8f4'   # echo
+            foreground_alpha: 1
+            background:       '#3070d8'   # cobalt
+            background_alpha: 0.3
+
+        indicator_statusline:
+            default:
+                foreground: '#b8cce8'   # voice
+                background: '#3070d8'   # cobalt
+            inactive:
+                foreground: '#7890c0'   # whisper
+                background: '#141c34'   # shadow
+
+        input_method_editor:
+            foreground: '#dce8f4'   # echo
+            background: '#f03848'   # crimson
+
+        normal:
+            black:   '#141c34'   # shadow
+            red:     '#f03848'   # crimson
+            green:   '#28c890'   # moss
+            yellow:  '#f0a038'   # amber
+            blue:    '#3070d8'   # cobalt
+            magenta: '#a078e8'   # iris
+            cyan:    '#30b8d8'   # cyan
+            white:   '#dce8f4'   # echo
+
+        bright:
+            black:   '#1a2444'   # dusk
+            red:     '#f07898'   # blush
+            green:   '#28c890'   # moss
+            yellow:  '#c8a040'   # honey
+            blue:    '#5098f0'   # sky
+            magenta: '#c860c0'   # orchid
+            cyan:    '#30b8d8'   # cyan
+            white:   '#b8cce8'   # voice
