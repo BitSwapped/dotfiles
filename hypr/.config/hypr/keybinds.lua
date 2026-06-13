@@ -4,7 +4,7 @@
 
 -- Programs
 local terminal = "contour"
-local terminal_alt = "ghostty"
+local terminal_alt = "alacritty"
 local fileManager = "nemo"
 local browser = "zen-browser"
 local menu = "wofi"
@@ -71,7 +71,16 @@ bind({ mainMod, "R" }, hl.dsp.exec_cmd(menu), { release = true, description = "O
 bind({ mainMod, "V" }, hl.dsp.window.float({ action = "toggle" }), { description = "Toggle floating" })
 bind({ mainMod, "P" }, hl.dsp.window.pseudo(), { description = "Toggle pseudo tiling" })
 bind({ mainMod, "T" }, hl.dsp.layout("togglesplit"), { description = "Toggle split layout (dwindle)" })
-bind({ mainMod, "F" }, hl.dsp.window.fullscreen(), { description = "Toggle fullscreen" })
+bind(
+  { mainMod, "F" },
+  hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }),
+  { description = "Toggle fullscreen" }
+)
+bind(
+  { mainMod, shiftMod, "F" },
+  hl.dsp.window.fullscreen_state({ internal = 2, client = 0, action = "toggle" }),
+  { description = "Fake fullscreen (no presentation mode)" }
+)
 
 -- Move focus with mainMod
 bind({ mainMod, "H" }, hl.dsp.focus({ direction = "left" }), { description = "Focus left" })
@@ -86,8 +95,8 @@ bind({ mainMod, shiftMod, "K" }, hl.dsp.window.swap({ direction = "up" }), { des
 bind({ mainMod, shiftMod, "J" }, hl.dsp.window.swap({ direction = "down" }), { description = "Swap window down" })
 
 bind({ mainMod, "Tab" }, function()
-  hl.dispatch(hl.dsp.window.cycle_next())  -- Change focus to another window
-  hl.dispatch(hl.dsp.window.bring_to_top()) -- Bring it to the top
+  hl.dispatch(hl.dsp.window.cycle_next({ tiled = true }))
+  hl.dispatch(hl.dsp.window.bring_to_top())
 end)
 
 -- Switch workspaces with mainMod + [0-9]
