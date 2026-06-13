@@ -12,6 +12,8 @@ hl.on("hyprland.start", function()
   -- Environment for xdg-desktop-portal-hyprland
   hl.exec_cmd("/usr/libexec/xdg-desktop-portal --replace")
   hl.exec_cmd("/usr/libexec/xdg-desktop-portal-hyprland")
+  -- Load pipewire
+  hl.exec_cmd("pipewire")
   -- Load easyeffects
   hl.exec_cmd("easyeffects --hide-window --service-mode")
   -- Start hypridle
