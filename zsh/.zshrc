@@ -41,6 +41,17 @@ export DEJA_WORD_ACCEPT_KEY='^[[1;5C'
 export DEJA_DISMISS_KEY='^J'
 
 # ----------------------
+#  Tab Completion — prevent autosuggestion bleed
+# ----------------------
+_zshrc-complete-no-suggest() {
+  zle expand-or-complete
+  # Clear any pending suggestion after completion runs
+  POSTDISPLAY=''
+}
+zle -N _zshrc-complete-no-suggest
+bindkey '^I' _zshrc-complete-no-suggest
+
+# ----------------------
 #  Zinit Plugin Manager
 # ----------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -100,7 +111,7 @@ zstyle ':completion:*' matcher-list \
   'm:{a-z}={A-Z}' \
   '+r:|[._-]=* r:|=*' \
   '+l:|=* r:|=*'
-zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*' completer _complete _correct _approximate
 zstyle ':completion:*:approximate:*' max-errors 2 numeric
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' squeeze-slashes true
@@ -110,6 +121,9 @@ zstyle ':completion:*:source:*' accept-exact false
 zstyle ':completion:*:.:*'      accept-exact false
 zstyle ':completion:*:source:*' add-space false
 zstyle ':completion:*:.:*'      add-space false
+zstyle ':completion:*:correct:*' insert-unambiguous true
+zstyle ':completion:*:history-words' remove-all-dups yes
+zstyle ':completion:*:history-words' stop yes
 
 # -----------------------------
 #  Completion System Init (cached)
