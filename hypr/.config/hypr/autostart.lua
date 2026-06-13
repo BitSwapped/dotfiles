@@ -8,10 +8,12 @@ hl.on("hyprland.start", function()
   -- Start polkit daemon
   hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
   -- Restore wallpaper
-  hl.exec_cmd("wpaper -d")
+  hl.exec_cmd("wpaperd -d")
   -- Environment for xdg-desktop-portal-hyprland
   hl.exec_cmd("/usr/libexec/xdg-desktop-portal --replace")
   hl.exec_cmd("/usr/libexec/xdg-desktop-portal-hyprland")
+  -- Load easyeffects
+  hl.exec_cmd("easyeffects --hide-window --service-mode")
   -- Start hypridle
   hl.exec_cmd("hypridle")
   -- Load cliphist history
