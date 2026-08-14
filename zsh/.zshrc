@@ -8,12 +8,15 @@ typeset -g ZSH_TIMING_THRESHOLD=0.5
 typeset -g ZSH_GIT_CACHE_TTL=${ZSH_GIT_CACHE_TTL:-2}
 typeset -g ZC_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 
+# Required for $EPOCHSECONDS / $EPOCHREALTIME (fixes git icons & timer)
+zmodload zsh/datetime
+
 # --------------------------------
 #  Path & Environment Sanitization
 # --------------------------------
 path=("${path[@]:#}") fpath=("${fpath[@]:#}")
 typeset +x FPATH fpath cdpath CDPATH
-
+typeset -gU path
 
 # ----------------------
 #  Early Shell Options
@@ -21,31 +24,40 @@ typeset +x FPATH fpath cdpath CDPATH
 setopt NO_BEEP COMBINING_CHARS RC_EXPAND_PARAM
 setopt AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
 setopt EXTENDED_HISTORY HIST_EXPIRE_DUPS_FIRST HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS HIST_SAVE_NO_DUPS
-setopt INC_APPEND_HISTORY SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS HIST_SAVE_NO_DUPS
+setopt SHARE_HISTORY
 
 setopt AUTO_LIST AUTO_MENU COMPLETE_IN_WORD ALWAYS_TO_END
 setopt NO_CASE_GLOB
 setopt LIST_PACKED
 
+# ----------------------
+#  Line Editor — Emacs Mode
+# ----------------------
+bindkey -e
 zle_highlight=('paste:none')
+
+# Remove slash, period, hyphen, and equals from word characters
+# Improves word-jumping (M-b / M-f) in file paths for Emacs mode
+WORDCHARS='${WORDCHARS//[\/.=-]}'
+
 skip_global_compinit=1
 DISABLE_AUTO_UPDATE=true
 
 # --------------------------
 #  Deja Suggestion Bindings
+#  Rebound away from emacs core keys (^H backspace, ^J enter, ^K kill-line)
 # --------------------------
-export DEJA_CYCLE_KEY='^K'
-export DEJA_ACCEPT_KEY='^H'
+export DEJA_CYCLE_KEY='^O'
+export DEJA_ACCEPT_KEY='^F'
 export DEJA_WORD_ACCEPT_KEY='^[[1;5C'
-export DEJA_DISMISS_KEY='^J'
+export DEJA_DISMISS_KEY='^G'
 
 # ----------------------
 #  Tab Completion — prevent autosuggestion bleed
 # ----------------------
 _zshrc-complete-no-suggest() {
   zle expand-or-complete
-  # Clear any pending suggestion after completion runs
   POSTDISPLAY=''
 }
 zle -N _zshrc-complete-no-suggest
@@ -73,17 +85,18 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice as"program" from"gh-r" pick"zsh-patina-*/zsh-patina" wait"1" lucid atload'eval "$(zsh-patina activate)"'
 zinit light michel-kraemer/zsh-patina
 
-zinit ice wait"0" lucid depth=1
+# Deja loaded with atload to prevent double initialization
+zinit ice wait"0" lucid depth=1 atload'eval "$(deja init zsh)"'
 zinit light Giammarco-Ferranti/deja
 
 zinit ice lucid blockf
-zinit light-mode for zsh-users/zsh-completions
+zinit light zsh-users/zsh-completions
 
 zinit ice wait"1" lucid
 zinit light-mode for OMZL::history.zsh OMZP::sudo
 
 # -------------------------------
-#  External Integrations (zoxide)
+#  External Integrations
 # -------------------------------
 if (( $+commands[zoxide] )); then
   eval "$(zoxide init --cmd cd zsh)"
@@ -127,6 +140,7 @@ zstyle ':completion:*:history-words' stop yes
 
 # -----------------------------
 #  Completion System Init (cached)
+#  Note: -C disables security checks for speed. Acceptable if you trust your fpath plugins.
 # -----------------------------
 typeset -g _COMPS_INITIALIZED=0
 autoload -Uz compinit
@@ -307,3 +321,28 @@ add-zsh-hook preexec .zshrc-timing-preexec
 #  Personal Aliases & Extras
 # ----------------------
 [[ -f "$HOME/.zalias" ]] && source "$HOME/.zalias"
+
+# Mise activation (safely checking multiple paths)
+if command -v mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+elif [[ -x "$HOME/.local/bin/mise" ]]; then
+  eval "$("$HOME/.local/bin/mise" activate zsh)"
+fi
+
+alias vi="nvim"
+alias bitvim="NVIM_APPNAME=bitvim nvim"
+
+function nvims() {
+  items=("default" "bitvim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+    alias vi="nvim" # Reset alias to default
+  else
+    alias vi="NVIM_APPNAME=${config} nvim"
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
